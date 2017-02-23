@@ -9,7 +9,7 @@ public class subtractDoubles {
 			arrayOfDoubles[i] = input.nextDouble();
 		}
 		for (int i =0; i<7; i++) {
-			change = (arrayOfDoubles[i+1] - arrayOfDoubles[i]);
+			change = Math.round((arrayOfDoubles[i+1] - arrayOfDoubles[i])*100)/100;
 			System.out.println(arrayOfDoubles[i]+" to "+ arrayOfDoubles[i+1] + " change: "+ change);
 		}
 		input.close();
