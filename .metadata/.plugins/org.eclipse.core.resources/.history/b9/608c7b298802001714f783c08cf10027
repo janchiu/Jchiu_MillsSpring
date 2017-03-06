@@ -13,13 +13,12 @@ public class TextExcel
 		Scanner userInput = new Scanner(System.in);
 		Spreadsheet jdog = new Spreadsheet(); 
 		String user= userInput.next();
+		//loop runs until user types quit
 		while(!userInput.equals("quit")){
-			jdog.processCommand(user);
+		jdog.processCommand(user);
 			user = userInput.nextLine();
 		}
-		//if(userInput.equals("quit")){
-			//userInput.close();
-		//}
 	    // Add your command loop here
+		userInput.close();
 	}
 }

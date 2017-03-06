@@ -17,9 +17,9 @@ public class TextExcel
 			jdog.processCommand(user);
 			user = userInput.nextLine();
 		}
-		//if(userInput.equals("quit")){
-			//userInput.close();
-		//}
+		if(userInput.equals("quit")){
+			userInput.close();
+		}
 	    // Add your command loop here
 	}
 }
