@@ -10,8 +10,8 @@ public class Spreadsheet implements Grid
 	private int [][] arrayOfStuff = new int[rows][cols];
 	public String processCommand(String command)
 	{
-		
-		return "";
+		System.out.println(command);
+		return command;
 	}
 
 

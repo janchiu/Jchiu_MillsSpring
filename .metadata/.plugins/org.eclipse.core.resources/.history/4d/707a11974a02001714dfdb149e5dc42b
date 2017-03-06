@@ -16,7 +16,7 @@ public class TextExcel
 		//loop runs until user types quit
 		while(!userInput.equals("quit")){
 		jdog.processCommand(user);
-			user = userInput.nextLine();
+			user = userInput.next();
 		}
 	    // Add your command loop here
 		userInput.close();

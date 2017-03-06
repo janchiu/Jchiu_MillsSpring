@@ -12,11 +12,14 @@ public class TextExcel
 	{
 		Scanner userInput = new Scanner(System.in);
 		Spreadsheet jdog = new Spreadsheet(); 
-		String user= userInput.next();
-		//loop runs until user types quit
-		while(!userInput.equals("quit")){
-		jdog.processCommand(user);
-			user = userInput.nextLine();
+		String[][] arr1 = new String[20][12];
+		for ( int i = 0; i< arr1.length; i++) {
+			for( int j = 0; j < arr1[i].length; j++){
+			arr1[i][j] = userInput.nextLine(); 
+			}
+		}
+		if(userInput = "quit"){
+			
 		}
 	    // Add your command loop here
 		userInput.close();
