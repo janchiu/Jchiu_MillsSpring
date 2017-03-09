@@ -7,9 +7,8 @@ public class Spreadsheet implements Grid
 	private int rows = 20;
 	private int cols = 12;
 	//2d array for rows and columns
-	Cell [][] arr1 = new EmptyCell[rows][cols];	
 	public Spreadsheet () {
-		
+		Cell [][] arr1 = new EmptyCell[rows][cols];	
 	}
 	
 	public String processCommand(String command)
@@ -46,11 +45,12 @@ public class Spreadsheet implements Grid
 			System.out.print(i+" ");
 			}
 			for ( int j = 0; j<12; j++ ){
-			System.out.print("|" + arr1[i][j].abbreviatedCellText());
+			System.out.print("|" + arr1.abbreviatedCellText());
 			}
 			System.out.println();
 		}
 		return "";
+		//System.out.println
 		//abbreviatedCellText();
 	}
 
