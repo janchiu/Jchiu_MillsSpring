@@ -29,15 +29,51 @@ public class Spreadsheet implements Grid
 	{
 		return null;
 	}
+	
+	public String getGridText()
+	{
+		String Grid = ""; 
+		String topLetter = "   |";
+		for(char i = 'A'; i<='L'; i++){
+			topLetter += i + "         |";
+		}
+		
+		String numbers = "\n";
+		for(int i = 0;i < 20;i++){
+			if(i<9){
+				numbers += (i+1);
+				numbers += "  |";
+				for(int j = 0; j<12;j++){
+					numbers += arr1[i][j].abbreviatedCellText() + "|";
+				}
+				numbers +="\n";
+			}else{
+				numbers += (i+1);
+				numbers += " |";
+				for(int j = 0; j<12;j++){
+					numbers += arr1[i][j].abbreviatedCellText() + "|";
+				}
+				numbers +="\n";
+			}
+		}
+		
+		
+		Grid = topLetter + numbers;
+		return Grid;
+	}
 
+}
+/*
 	public String getGridText()
 	{
 		String[] letters = {"A","B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"};
-		System.out.print("   ");
+		System.out.print("          ");
 		for( int k = 0; k<12; k++){
 			System.out.print("|"+letters[k] + "         ");
 		}
 		System.out.println();
+		
+		/*
 		for( int i = 1; i<20; i++){
 			if(i<=9){
 			System.out.print(i+"  "); 
@@ -53,5 +89,4 @@ public class Spreadsheet implements Grid
 		return "";
 		//abbreviatedCellText();
 	}
-
-}
+*/
