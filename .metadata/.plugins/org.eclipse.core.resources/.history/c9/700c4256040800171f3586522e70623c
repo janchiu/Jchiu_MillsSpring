@@ -21,7 +21,11 @@ public class Spreadsheet implements Grid
 		 // clear A1 = clears a particular cell 
 		
 		return "";
-	}	
+	}
+	public String inspect(String command) {
+		
+		
+	}
 	public int getRows()
 	{
 		return this.rows;

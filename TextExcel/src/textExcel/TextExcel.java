@@ -10,15 +10,17 @@ public class TextExcel
 
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		//Scanner userInput = new Scanner(System.in);
-		//String user= userInput.next();
-		//while(!userInput.equals("quit")){
-			//jdog.processCommand(user);
-			//user = userInput.nextLine();
+		Scanner userInput = new Scanner(System.in);
+		String user= userInput.next();
+		Spreadsheet jdog = new Spreadsheet();
+		jdog.getGridText();
+		while(!userInput.equals("quit")){
+			jdog.processCommand(user);
+			user = userInput.nextLine();
 		}
-		//if(userInput.equals("quit")){
-			//userInput.close();
-		//}
-	    // Add your command loop here
-	//}
+		if(userInput.equals("quit")){
+			userInput.close();
+		}
+	   
+	}
 }
