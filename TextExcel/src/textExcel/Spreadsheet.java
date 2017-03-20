@@ -1,121 +1,98 @@
 package textExcel;
 
-// Update this file with your own code.
-
+import java.util.Arrays;
 public class Spreadsheet implements Grid
 {
+	Cell[][] arr1;
 	private int rows = 20;
-	private int cols = 12;
-	//2d array for rows and columns
-	Cell [][] arr1 = new EmptyCell[rows][cols];	
-	public Spreadsheet () {
-		
+	private int columns = 12;
+	
+	public Spreadsheet(){
+		arr1 = new Cell[rows][columns];
+		for(int i = 0; i < rows; i++){
+			for(int j = 0; j < columns; j++){
+				arr1[i][j] = new EmptyCell();
+			}
+		}
 	}
 	
-	public String processCommand(String command)
-	{	
+	@Override
+	public String processCommand(String command){
+		String[] result = command.split(" ", 3);
 		
-		if(command == "clear" ){
-			return command; // return the grid 
+		if(command.equals("")){
+			return "";
 		}
-		 // clear A1 = clears a particular cell 
 		
-		return "";
-	}	
-	public int getRows()
-	{
-		return this.rows;
-	}
-	public int getCols()
-	{
-		return this.cols;
-	}
-
-	public Cell getCell(Location loc)
-	{
-		return null;
-	}
-	
-
-/*
-	public String getGridText()
-	{
-		String[] letters = {"A","B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"};
-		System.out.print("          ");
-		for( int k = 0; k<12; k++){
-			System.out.print("|"+letters[k] + "         ");
+		else if(result.length == 3 && result[2].startsWith("\"")){
+			String word = result[2].substring(1, result[2].length() - 1);
+			setCell(new SpreadsheetLocation(result[0]), new TextCell(word));
+			return getGridText();
 		}
-		System.out.println();
-		
-		for( int i = 1; i<20; i++){
-			if(i<=9){
-			System.out.print(i+"  "); 
-			}
-			if(i>=10){
-			System.out.print(i+" ");
-			}
-			for ( int j = 0; j<12; j++ ){
-			System.out.print("|" + arr1[i][j].abbreviatedCellText());
-			}
-			System.out.println();
+		else if(result.length == 2 && result[0].toLowerCase().equals("clear")){
+			clearLocation(new SpreadsheetLocation(result[1]));
+			return getGridText();
+		}
+		else if(result.length == 1 && !result[0].toLowerCase().equals("clear")){
+			Cell loc = getCell(new SpreadsheetLocation(result[0]));
+			return loc.fullCellText();
+		}
+		else if(result.length == 1 && result[0].toLowerCase().equals("clear")){
+			clear();
+			return getGridText();
 		}
 		return "";
-		//abbreviatedCellText();
 	}
-}
-*/
-	/*
-	public  String getGridText()
-	{
-		String alphabet= "ABCDEFGHIJKL";
-		String firstline;
-		String grid="";
-		//12
-		//first row 
-		firstline= (print3());
-		for (int i=0; i<=11;i++){
-			firstline+=("|" + alphabet.charAt(i)+ print9());
-		}
-		firstline+= ("\n");
-		for (int i=1; i<=20; i++){
-			if (i<10){
-				grid+= (i + print2()+ "\n");
-				for (int j=1; j<=12;i++){
-					grid+=("|" + print10());
-				}
-			}
-			if (i>=10){
-				grid+=(i + " " + "\n");
-				for (int k=1; k<=12;i++){
-					grid+=("|" + print10());
-			}
-			
-		}
-	}
-		return firstline + grid;
-}
 	
-	public String print9(){
-		return ("         ");
+	public Cell parseCell(String statement){
+		if(statement.endsWith("\"")){
+			TextCell word = new TextCell(statement);
+			return word;
+		}else{
+			return new TextCell("Does not work");
+		}
+	}
+	
+	public void clear(){
+		arr1 = new Cell[rows][columns];
+		for(int i = 0; i < rows; i++){
+			for(int j = 0; j < columns; j++){
+				arr1[i][j] = new EmptyCell();
+			}
+		}
+	}
+	
+	public void clearLocation(SpreadsheetLocation loc){
+		setCell(loc, new EmptyCell());
+	}
+	
+	@Override
+	public int getRows(){
+		return 20;
 	}
 
-	public String print3(){
-		return ("   ");
+	@Override
+	public int getCols(){
+		return 12;
 	}
-	public String print2(){
-		return("  ");
-		
+
+	@Override
+	public Cell getCell(Location location){
+		int row = location.getRow();
+		int col = location.getCol();
+		return arr1[row][col];
 	}
-	public String print10(){
-		return("          ");
+
+	public void setCell(SpreadsheetLocation cellLoc, Cell value) {
+		arr1[cellLoc.getRow()][cellLoc.getCol()] = value;
 	}
-	*/
-	public String getGridText()
-	{
-		 
-		String topLetter = "   |";
-		for(char i = 'A'; i<='L'; i++){
-			topLetter += i + "         |";
+	
+	@Override
+	public String getGridText(){
+		String[] atol = {"A","B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"};
+		String letters = "   |";
+		for(int i = 0; i< atol.length;i++){
+			letters += atol[i] + "         |";
 		}
 		String numbers = "\n";
 		for(int i = 0;i < 20;i++){
@@ -135,15 +112,6 @@ public class Spreadsheet implements Grid
 				numbers +="\n";
 			}
 		}
-		return topLetter + numbers;
-	}
-
-	public void clear(){
-		//clear the entire grid
-		for(int i = 0; i<20;i++){
-			for(int j = 0;j<12;j++){
-				arr1 [i][j] = new EmptyCell();
-			}
-		}
+		return letters + numbers;
 }
 }

@@ -1,0 +1,35 @@
+package textExcel;
+
+public class ValueCell extends RealCell 
+	{
+	private String answer;
+	private double doubleValue;
+	
+	public ValueCell(String enterValue){
+		super(enterValue);	
+	}
+	public double getDoubleValue(){
+		answer = getCellContents();
+		
+		double doubleValue=Double.parseDouble(ball);
+		return doubleValue;
+	}
+	public String abbreviatedCellText(){
+		String ball=getCellContents();		
+		double kkkkkk=Double.parseDouble(ball);
+		ball=kkkkkk+"";
+		if(ball.indexOf(".")==-1){
+			ball+=(".0");
+		}
+		ball+="               ";
+		return ball.substring(0,10);
+	}
+	public String fullTextCell(){
+		String ball=getCellContents();
+		
+		return  getDoubleValue()+"";
+	}
+	
+	
+
+}

@@ -1,0 +1,36 @@
+package textExcel;
+
+public class RealCell implements Cell {
+	private String answer;
+	
+	public RealCell(String enteredValue) {
+		answer = enteredValue;
+	}
+	@Override
+	public String abbreviatedCellText() {
+	/*
+		String returnValue = getDoubleValue() + "";
+		if ( returnValue.length() < 10) {
+			while (returnValue.length() < 10){
+				returnValue += " ";
+			}
+		return returnValue;
+	} else if ( returnValue.length() > 10 ) {
+		returnValue = returnValue.substring(0,10);
+		return returnValue;
+	} else{
+		return returnValue;
+	}
+	*/
+		return "          ";
+	}
+
+	@Override
+	public String fullCellText() {
+		// TODO Auto-generated method stub
+		return answer;
+	}
+	public double getDoubleValue(){
+		return Double.parseDouble(answer);
+	}
+}

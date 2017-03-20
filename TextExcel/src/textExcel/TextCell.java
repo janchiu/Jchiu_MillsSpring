@@ -2,18 +2,31 @@ package textExcel;
 
 public class TextCell implements Cell {
 
+private String cellContents;
+	
+	public TextCell (String contents){
+		cellContents = contents; 
+	}
 	@Override
 	public String abbreviatedCellText() {
-		// TODO Auto-generated method stub
-		return null;
+		String returnStr = cellContents;
+		if (cellContents.length() < 10){
+			while (returnStr.length() < 10){
+				returnStr += " ";
+			}
+			return returnStr;
+		} else if (cellContents.length() > 10){
+			returnStr = returnStr.substring(0, 10);
+			return returnStr;
+		}else{
+			return cellContents;
+		}
 	}
 
 	@Override
 	public String fullCellText() {
-		// TODO Auto-generated method stub
-		return null;
+		return "\"" + cellContents + "\"";
 	}
-	public TextCell(String name){
-		
-	}
+
 }
+
