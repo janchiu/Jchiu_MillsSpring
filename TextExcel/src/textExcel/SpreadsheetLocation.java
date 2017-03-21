@@ -14,7 +14,7 @@ public class SpreadsheetLocation implements Location
 	    {
 	    	int colNum;
 	    	if (locationValue.charAt(0)>90){
-	    		colNum = locationValue.charAt(0) - 97;
+	    		colNum = locationValue.charAt(0) - 97; // asky table 
 	    	}else{
 	            colNum = locationValue.charAt(0) - 65;
 	    	}

@@ -30,7 +30,7 @@ public class Spreadsheet implements Grid
 			return getGridText();
 		}
 		else if(result.length == 2 && result[0].toLowerCase().equals("clear")){
-			clearLocation(new SpreadsheetLocation(result[1]));
+			clearCell(new SpreadsheetLocation(result[1]));
 			return getGridText();
 		}
 		else if(result.length == 1 && !result[0].toLowerCase().equals("clear")){
@@ -62,7 +62,7 @@ public class Spreadsheet implements Grid
 		}
 	}
 	
-	public void clearLocation(SpreadsheetLocation loc){
+	public void clearCell(SpreadsheetLocation loc){
 		setCell(loc, new EmptyCell());
 	}
 	
