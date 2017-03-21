@@ -3,16 +3,14 @@ package textExcel;
 public class PercentCell extends RealCell {
 	@Override
 	public String abbreviatedCellText() {
-		String answer = getCellContents();
-		if (answer.indexOf(".") != -1){
-			answer = answer.substring(0, answer.indexOf(".")) + "%                    ";
-		}
-		return answer.substring(0,10);
+		
+		
+		return super.abbreviatedCellText();
 	}
 
 	@Override
 	public String fullCellText() {
-		
+		// TODO Auto-generated method stub
 		return super.fullCellText();
 	}
 	
