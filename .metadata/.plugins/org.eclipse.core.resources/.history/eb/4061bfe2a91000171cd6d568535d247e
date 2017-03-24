@@ -8,7 +8,7 @@ public class RealCell implements Cell {
 	}
 	@Override
 	public String abbreviatedCellText() {
-		String stuff =answer+"          ";
+		String stuff =answer+"                    ";
 		return stuff.substring(0,10);
 	}
 	@Override

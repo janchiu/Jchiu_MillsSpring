@@ -1,15 +1,13 @@
 package textExcel;
 
 public class PercentCell extends RealCell {
-	
-	private String answer;
+	@Override
 	public String abbreviatedCellText() {
-		String output;
-		if(answer.indexOf(".") < 0){	
-			output = answer; 
-		} else 
-			output = answer.substring(0,answer.indexOf("."))+ "%";
-		return (answer + "          ").substring(0, 10);
+		String answer = getCellContents();
+		if (answer.indexOf(".") != -1){
+			answer = answer.substring(0, answer.indexOf(".")) + "%                    ";
+		}
+		return answer.substring(0,10);
 	}
 
 	@Override
