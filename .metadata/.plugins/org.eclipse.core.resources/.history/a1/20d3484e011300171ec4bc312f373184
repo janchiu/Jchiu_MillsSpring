@@ -20,7 +20,7 @@ public class ValueCell extends RealCell
 		if(answer.indexOf(".")==-1){
 			answer+=(".0");
 		}
-		answer+="          ";
+		answer+="               ";
 		return answer.substring(0,10);
 	}
 	public String fullTextCell(){

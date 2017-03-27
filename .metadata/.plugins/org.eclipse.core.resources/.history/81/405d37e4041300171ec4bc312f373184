@@ -44,7 +44,7 @@ public class Spreadsheet implements Grid
 		return "";
 	}
 	
-	/*public Cell parseCell(String statement){
+	public Cell parseCell(String statement){
 		if(statement.endsWith("\"")){
 			TextCell word = new TextCell(statement);
 			return word;
@@ -52,7 +52,7 @@ public class Spreadsheet implements Grid
 			return new TextCell("Does not work");
 		}
 	}
-	*/
+	
 	public void clear(){
 		arr1 = new Cell[rows][columns];
 		for(int i = 0; i < rows; i++){

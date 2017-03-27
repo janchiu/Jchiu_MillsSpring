@@ -7,11 +7,9 @@ public class PercentCell extends RealCell {
 		String output;
 		if(answer.indexOf(".") < 0){	
 			output = answer; 
-			
 		} else 
 			output = answer.substring(0,answer.indexOf("."))+ "%";
-		
-		return (output + "          ").substring(0, 10);
+		return (answer + "          ").substring(0, 10);
 	}
 
 	@Override

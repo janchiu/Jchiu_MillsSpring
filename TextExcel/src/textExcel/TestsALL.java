@@ -422,6 +422,7 @@ public class TestsALL
             Cell dateCell = grid.getCell(new TestLocation(0,0));
             assertEquals("date cell text", "11%", dateCell.abbreviatedCellText().trim());
             assertEquals("date inspection text", "0.1125", dateCell.fullCellText());
+ 
         }
 
         @Test
