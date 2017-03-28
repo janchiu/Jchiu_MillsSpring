@@ -26,7 +26,7 @@ public class Spreadsheet implements Grid
 		
 		else if(result.length == 3 && result[2].startsWith("\"")){
 			String word = result[2].substring(1, result[2].length() - 1);
-			setCell(new SpreadsheetLocation(result[0]), new TextCell(word));
+			setCell(new SpreadsheetLocation(result[0]), word);
 			return getGridText();
 		}
 		else if(result.length == 2 && result[0].toLowerCase().equals("clear")){
@@ -63,7 +63,7 @@ public class Spreadsheet implements Grid
 	}
 	
 	public void clearCell(SpreadsheetLocation loc){
-		setCell(loc, new EmptyCell());
+		arr1[loc.getRow()][loc.getCol()]  = new EmptyCell();
 	}
 	
 	@Override
@@ -83,8 +83,17 @@ public class Spreadsheet implements Grid
 		return arr1[row][col];
 	}
 
-	public void setCell(SpreadsheetLocation cellLoc, Cell value) {
-		arr1[cellLoc.getRow()][cellLoc.getCol()] = value;
+	public void setCell(SpreadsheetLocation cellLoc, String value) {
+		if( value.trim().charAt(0)==34){ // textCell 
+			arr1[cellLoc.getRow()][cellLoc.getCol()] = new TextCell(value);
+		}
+		if( value.trim().endsWith("%")){
+			arr1[cellLoc.getRow()][cellLoc.getCol()] =  new PercentCell(value);
+		}if (value.trim().charAt(0)=='('){
+			arr1[cellLoc.getRow()][cellLoc.getCol()] = new FormulaCell(value);
+		} else{
+			arr1[cellLoc.getRow()][cellLoc.getCol()] = new ValueCell(value);
+		}
 	}
 	
 	@Override
