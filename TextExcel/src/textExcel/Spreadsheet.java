@@ -25,7 +25,7 @@ public class Spreadsheet implements Grid
 		}
 		
 		else if(result.length == 3 && result[2].startsWith("\"")){
-			String word = result[2].substring(1, result[2].length() - 1);
+			String word = result[2];
 			setCell(new SpreadsheetLocation(result[0]), word);
 			return getGridText();
 		}
@@ -85,7 +85,7 @@ public class Spreadsheet implements Grid
 
 	public void setCell(SpreadsheetLocation cellLoc, String value) {
 		if( value.trim().charAt(0)==34){ // textCell 
-			arr1[cellLoc.getRow()][cellLoc.getCol()] = new TextCell(value);
+			arr1[cellLoc.getRow()][cellLoc.getCol()] = new TextCell(value.substring(1, value.length() - 1));
 		}
 		if( value.trim().endsWith("%")){
 			arr1[cellLoc.getRow()][cellLoc.getCol()] =  new PercentCell(value);

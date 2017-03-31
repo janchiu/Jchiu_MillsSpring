@@ -3,7 +3,7 @@ package textExcel;
 public class PercentCell extends RealCell {
 	
 	public String abbreviatedCellText() {
-		String output = super.getDoubleValue() + "%";
+		String output = getDoubleValue() + "%";
 		if(output.indexOf(".") < 0){
 			if (output.length() < 10){
 				while (output.length() < 10){

@@ -4,17 +4,24 @@ public class PercentCell extends RealCell {
 	
 	private String answer;
 	public String abbreviatedCellText() {
-		answer = getCellContents();
-		if (answer.indexOf(".") != -1){
-			answer = answer.substring(0, answer.indexOf(".")) + "%                    ";
+		String output = getDoubleValue() + "%";
+		if(answer.indexOf(".") < 0){
+			if (output.length() < 10){
+				while (output.length() < 10){
+					output += " ";
+				} 
+			return output;
+		} else 
+			output = answer.substring(0,answer.indexOf("."))+ "%";
+		return (output + "          ").substring(0, 10);
 		}
-		return (answer + "          ").substring(0, 10);
+		return "";
 	}
 
 	@Override
 	public String fullCellText() {
 		
-		return super.fullCellText();
+		return getDoubleValue()+"";
 	}
 	
 	public PercentCell(String originalValue){
