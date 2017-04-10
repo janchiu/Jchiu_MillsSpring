@@ -1,124 +1,142 @@
+
 package textExcel;
 
-import java.util.Arrays;
-public class Spreadsheet implements Grid
-{
-	Cell[][] arr1;
-	private int rows = 20;
-	private int columns = 12;
+import java.io.*;
+import java.util.Scanner;
+
+
+public class Spreadsheet implements Grid{
+	Cell[][] data;
+	private int row = 20;
+	private int column = 12;
 	
 	public Spreadsheet(){
-		arr1 = new Cell[rows][columns];
-		for(int i = 0; i < rows; i++){
-			for(int j = 0; j < columns; j++){
-				arr1[i][j] = new EmptyCell();
-			}
-		}
+		clear(); // 
 	}
-	
+
 	@Override
 	public String processCommand(String command){
-		String[] result = command.split(" ", 3);
-		
+		String[] splitWords = command.split(" ", 3);
+
 		if(command.equals("")){
 			return "";
 		}
+	
 		
-		else if(result.length == 3 && result[2].startsWith("\"")){
-			String word = result[2];
-			setCell(new SpreadsheetLocation(result[0]), word);
+		else if(splitWords.length == 3 && splitWords[2].startsWith("\"")){
+			String word = splitWords[2].substring(1, splitWords[2].length() - 1);
+			setCell(new SpreadsheetLocation(splitWords[0]), new TextCell(word));
 			return getGridText();
 		}
-		else if(result.length == 2 && result[0].toLowerCase().equals("clear")){
-			clearCell(new SpreadsheetLocation(result[1]));
+
+		else if(splitWords.length == 3 && splitWords[1].equals("=")){
+			
+			if(splitWords[2].contains("%")){
+				String inputNumber = splitWords[2].substring(0, splitWords[2].length() - 1);
+				setCell(new SpreadsheetLocation(splitWords[0]), new PercentCell(inputNumber));
+				return getGridText();
+			}
+			
+			else if(splitWords[2].startsWith("(") && splitWords[2].endsWith(")")){
+				setCell(new SpreadsheetLocation(splitWords[0]), new FormulaCell(splitWords[2], this));
+				return getGridText();
+			
+			}else{
+				String value = splitWords[2];
+				setCell(new SpreadsheetLocation(splitWords[0]), new ValueCell(value));
+				return getGridText();
+			}
+		}
+
+		
+		else if(splitWords.length == 1 && !splitWords[0].equalsIgnoreCase("clear")){
+			String value = this.getCell(new SpreadsheetLocation(command)).fullCellText();
+			if(value.endsWith(".0")){
+				value = getCell(new SpreadsheetLocation(command)).fullCellText().substring(0, value.length() - 2);
+			}
+			return value;
+		}
+
+		else if(splitWords.length == 2 && splitWords[0].equalsIgnoreCase("clear")){
+			clearLocation(new SpreadsheetLocation(splitWords[1]));
 			return getGridText();
 		}
-		else if(result.length == 1 && !result[0].toLowerCase().equals("clear")){
-			Cell loc = getCell(new SpreadsheetLocation(result[0]));
-			return loc.fullCellText();
-		}
-		else if(result.length == 1 && result[0].toLowerCase().equals("clear")){
+
+		else if(splitWords.length == 1 && splitWords[0].equalsIgnoreCase("clear")){
 			clear();
 			return getGridText();
 		}
 		return "";
 	}
-	
-	/*public Cell parseCell(String statement){
-		if(statement.endsWith("\"")){
-			TextCell word = new TextCell(statement);
-			return word;
-		}else{
-			return new TextCell("Does not work");
-		}
-	}
-	*/
+
+
 	public void clear(){
-		arr1 = new Cell[rows][columns];
-		for(int i = 0; i < rows; i++){
-			for(int j = 0; j < columns; j++){
-				arr1[i][j] = new EmptyCell();
+		data = new Cell[row][column];
+		for(int i = 0; i < row; i++){
+			for(int j = 0; j < column; j++){
+				data[i][j] = new EmptyCell();
 			}
 		}
 	}
-	
-	public void clearCell(SpreadsheetLocation loc){
-		arr1[loc.getRow()][loc.getCol()]  = new EmptyCell();
+
+	public void clearLocation(SpreadsheetLocation loc){
+		setCell(loc, new EmptyCell());
 	}
 	
-	@Override
 	public int getRows(){
-		return 20;
+		return data.length;
 	}
 
-	@Override
 	public int getCols(){
-		return 12;
+		return data[0].length;
 	}
 
-	@Override
-	public Cell getCell(Location location){
-		int row = location.getRow();
-		int col = location.getCol();
-		return arr1[row][col];
-	}
-
-	public void setCell(SpreadsheetLocation cellLoc, String value) {
-		if( value.trim().charAt(0)==34){ // textCell 
-			arr1[cellLoc.getRow()][cellLoc.getCol()] = new TextCell(value.substring(1, value.length() - 1));
-		}
-		if( value.trim().endsWith("%")){
-			arr1[cellLoc.getRow()][cellLoc.getCol()] =  new PercentCell(value);
-		}if (value.trim().charAt(0)=='('){
-			arr1[cellLoc.getRow()][cellLoc.getCol()] = new FormulaCell(value);
-		} else{
-			arr1[cellLoc.getRow()][cellLoc.getCol()] = new ValueCell(value);
-		}
+		public Cell getCell(Location loc){
+		return data[loc.getRow()][loc.getCol()];
 	}
 	
-	@Override
+	public void setCell(SpreadsheetLocation cellLoc, Cell value) {
+		data[cellLoc.getRow()][cellLoc.getCol()] = value;
+	}
+	
+	
 	public String getGridText(){
-		String[] atol = {"A","B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"};
-		String letters = "   |";
-		for(int i = 0; i< atol.length;i++){
-			letters += atol[i] + "         |";
+		String sheet = "   ";
+
+		for (int i = 0; i < data[0].length; i++) {
+			sheet += ("|" + (char) (i + 'A') + "         ");
 		}
-		String numbers = "\n";
-		for(int i = 0;i < 20;i++){
-			if(i<9){
-				numbers += (i+1)+"  |";
-				for(int j = 0; j<12;j++){
-					numbers += arr1[i][j].abbreviatedCellText() + "|";
-				}
-				numbers +="\n";
-			}else{
-				numbers += (i+1)+" |";
-				for(int j = 0; j<12;j++){
-					numbers += arr1[i][j].abbreviatedCellText() + "|";
-				}
-				numbers +="\n";
-			}
+		sheet += "|\n";
+
+		for (int i = 0; i < data.length; i++) {
+			sheet += String.format("%-3d", i + 1) + alignRow(data[i]);
 		}
-		return letters + numbers;
-}
+		return sheet;
+	}
+	
+	//formats the rows in the sheet
+	public String alignRow(Cell[] cols) {
+		String row = "";
+		for (Cell i : cols) {
+			row += "|" + i.abbreviatedCellText();
+		}
+		row += "|\n";
+		return row;
+	}
+
+	private Cell setType(String cellType, String value) {
+		if (cellType.equals("TextCell")) {
+			return new TextCell(value);
+		}
+		else if (cellType.equals("ValueCell")) {
+			return new ValueCell(value);
+		}
+		else if (cellType.equals("PercentCell")) {
+			return new PercentCell(value);
+		}
+		else if (cellType.equals("FormulaCell")) {
+			return new FormulaCell(value, this);
+		}
+		return null;
+	}
 }

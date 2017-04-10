@@ -1,0 +1,30 @@
+package textExcel;
+import java.io.FileNotFoundException;
+
+import java.util.Scanner;
+import textExcel.TestsALL.TestLocation;
+public class TextExcel
+{
+	public static void main(String[] args) throws FileNotFoundException
+	{
+		    Spreadsheet jdog = new Spreadsheet();
+		    String greeting = "98828938298392839";
+			System.out.println(Double.parseDouble(greeting) + "");
+			
+			
+			Grid test = new Spreadsheet();
+			String a = test.processCommand("a2 = " + greeting);
+			Cell bigCell = test.getCell(new TestLocation(0, 0));
+
+			System.out.println(a);
+
+		    
+		    Scanner input = new Scanner(System.in);
+		    String command = input.nextLine();
+		    while (!command.equals("quit")){
+		    	System.out.println(jdog.processCommand(command));
+		    	command = input.nextLine();
+		    }
+		    input.close();
+	}
+}

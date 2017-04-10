@@ -1,4 +1,5 @@
 package textExcel;
+
 public class SpreadsheetLocation implements Location
 	{
 		private String locationValue;
@@ -27,3 +28,4 @@ public class SpreadsheetLocation implements Location
 	    }
 
 	}
+

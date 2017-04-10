@@ -1,0 +1,92 @@
+package textExcel;
+
+public class TextCell implements Cell {
+/*
+private String cellContents;
+	
+	public TextCell (String contents){
+		cellContents = contents; 
+	}
+	@Override
+	public String abbreviatedCellText() {
+		String returnStr = cellContents;
+		if (cellContents.length() < 10){
+			while (returnStr.length() < 10){
+				returnStr += " ";
+			}
+			return returnStr;
+		} else if (cellContents.length() > 10){
+			returnStr = returnStr.substring(0, 10);
+			return returnStr;
+		}else{
+			return cellContents;
+		}
+	}
+
+	@Override
+	public String fullCellText() {
+		return "\"" + cellContents + "\"";
+	}
+*/
+	/*
+private String content;
+	
+	public TextCell(String s) {
+		this.content = s;
+	}
+	public void setTextCell(String str){
+		content = str;
+	}
+	public String abbreviatedCellText() {
+		String abbreviatedText = content;
+		
+		if(content.charAt(0) == '\"'){
+			abbreviatedText = content.substring(1, content.length() - 1);
+		}
+		if(abbreviatedText.length() > 10){
+			abbreviatedText = content.substring(1, 11);
+			return abbreviatedText;
+		}else{
+			//fills in the spaces
+			while(abbreviatedText.length()<10){
+				abbreviatedText += " ";
+
+			}
+			return abbreviatedText;
+		}
+	}
+
+	
+	public String fullCellText() {
+		return content;
+		
+	}
+}
+*/
+		private String text;
+		public TextCell(String line){
+			text=line;
+		}
+		
+		public String abbreviatedCellText() {
+			//Returns the text of the cell, cut off at ten characters
+			if(text.length()-1>10){
+				if(text.substring(0, 1).equals("\"")){
+					if(text.substring(10, 11).equals("\""))
+						return text.substring(1, 10);
+					return text.substring(1, 11);
+				}
+				else
+					return text.substring(0, 10);
+			}	
+			else
+				return String.format("%-10s", text.substring(1, text.length()-1));
+					
+		}
+		
+		public String fullCellText() {
+			//Returns the full String inputted
+			return text;
+		}
+
+	}

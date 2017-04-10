@@ -1,0 +1,147 @@
+package textExcel;
+
+import java.util.Arrays;
+public class Spreadsheet implements Grid
+{
+	Cell[][] arr1;
+	private int rows = 20;
+	private int columns = 12;
+	
+	public Spreadsheet(){
+		arr1 = new Cell[rows][columns];
+		for(int i = 0; i < rows; i++){
+			for(int j = 0; j < columns; j++){
+				arr1[i][j] = new EmptyCell();
+			}
+		}
+	}
+	/*
+	@Override
+	public String processCommand(String command){
+		String[] result = command.split(" ", 3);
+		
+		if(command.equals("")){
+			return "";
+		}
+		
+		else if(result.length == 3 && result[2].startsWith("\"")){
+			String word = result[2];
+			setCell(new SpreadsheetLocation(result[0]), word);
+			return getGridText();
+		}
+		else if(result.length == 2 && result[0].toLowerCase().equals("clear")){
+			clearCell(new SpreadsheetLocation(result[1]));
+			return getGridText();
+		}
+		else if(result.length == 1 && !result[0].toLowerCase().equals("clear")){
+			Cell loc = getCell(new SpreadsheetLocation(result[0]));
+			return loc.fullCellText();
+		}
+		else if(result.length == 1 && result[0].toLowerCase().equals("clear")){
+			clear();
+			return getGridText();
+		}
+		else{
+			SpreadsheetLocation location = new SpreadsheetLocation(result[0].toUpperCase()); 
+			return getCell(location).fullCellText();
+		}
+	}
+	*/
+	public String processCommand(String command)
+	{
+		String[] Command = command.split(" ",3);
+		
+		if(Command.length == 2&&Command[0].toLowerCase().equals("clear")){  		//clearing a particular cell (e.g., clear A1).
+			clearCell(Command[1]);
+			return getGridText();
+			
+		}else if(Command.length == 3){						//assignment to string values (e.g., A1 = "Hello").
+			setCell(Command[0],Command[2]);
+			return getGridText();
+			
+		}else{
+			if(Command.length==1&&Command[0].toLowerCase().equals("clear")){  //clearing the entire sheet (e.g., clear).
+				clear();
+				return getGridText();
+				
+			}else{     			//cell inspection (e.g., A1). This should return the value at that cell
+				return inspectCell(Command[0]);
+				
+			}
+		}	
+	}
+	public void clear(){
+		arr1 = new Cell[rows][columns];
+		for(int i = 0; i < rows; i++){
+			for(int j = 0; j < columns; j++){
+				arr1[i][j] = new EmptyCell();
+			}
+		}
+	}
+	
+	public void clearCell(String loc){
+		SpreadsheetLocation loca = new SpreadsheetLocation(loc.toUpperCase());
+		arr1[loca.getRow()][loca.getCol()]  = new EmptyCell();
+	}
+	
+	@Override
+	public int getRows(){
+		return 20;
+	}
+
+	@Override
+	public int getCols(){
+		return 12;
+	}
+
+	@Override
+	public Cell getCell(Location location){
+		int row = location.getRow();
+		int col = location.getCol();
+		return arr1[row][col];
+	}
+	public String inspectCell(String cell){
+		//Inspect the content of the cell
+		SpreadsheetLocation loc = new SpreadsheetLocation(cell.toUpperCase()); 
+		return getCell(loc).fullCellText();
+	}
+	public void setCell(String cellLoc, String loc) {
+		SpreadsheetLocation location = new SpreadsheetLocation(cellLoc.toUpperCase());
+		if( cellLoc.trim().charAt(0)==34){ // textCell 
+			arr1[location.getRow()][location.getCol()] = new TextCell(cellLoc.substring(1, cellLoc.length() - 1));
+		}
+		if( cellLoc.trim().endsWith("%")){
+			arr1[location.getRow()][location.getCol()] =  new PercentCell(cellLoc.trim());
+		}if (cellLoc.trim().charAt(0)=='('){
+			arr1[location.getRow()][location.getCol()] = new FormulaCell(cellLoc.trim());
+		} else{
+			arr1[location.getRow()][location.getCol()] = new ValueCell(cellLoc.trim());
+		}
+	}
+	
+	@Override
+	public String getGridText(){
+		String[] atol = {"A","B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"};
+		String letters = "   |";
+		for(int i = 0; i< atol.length;i++){
+			letters += atol[i] + "         |";
+		}
+		String numbers = "\n";
+		for(int i = 0;i < 20;i++){
+			if(i<9){
+				numbers += (i+1)+"  |";
+				for(int j = 0; j<12;j++){
+					numbers += arr1[i][j].abbreviatedCellText() + "|";
+				}
+				numbers +="\n";
+			}else{
+				numbers += (i+1)+" |";
+				for(int j = 0; j<12;j++){
+					numbers += arr1[i][j].abbreviatedCellText() + "|";
+				}
+				numbers +="\n";
+			}
+		}
+		return letters + numbers;
+}
+}

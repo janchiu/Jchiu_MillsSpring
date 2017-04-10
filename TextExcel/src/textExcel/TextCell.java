@@ -1,7 +1,6 @@
 package textExcel;
 
 public class TextCell implements Cell {
-
 private String cellContents;
 	
 	public TextCell (String contents){
@@ -27,6 +26,5 @@ private String cellContents;
 	public String fullCellText() {
 		return "\"" + cellContents + "\"";
 	}
-
 }
-
+	

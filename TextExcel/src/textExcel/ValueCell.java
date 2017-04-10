@@ -2,28 +2,12 @@ package textExcel;
 
 public class ValueCell extends RealCell 
 	{
-	private String answer;
-	
-	public ValueCell(String enteredValue){
-		super(enteredValue);	
-	}
-	public double getDoubleValue(){
-		answer = getCellContents();
-		double doubleValue=Double.parseDouble(answer);
-		return doubleValue;
-	}
-	public String abbreviatedCellText(){
-		String answer=getCellContents();
-		if( answer.length()< 10) {
-			answer = getDoubleValue()+ "";
-		} else {
-			answer = this.answer;
-			return answer;
+
+		public ValueCell(String inputValue){
+			super(inputValue);
 		}
-		answer+="          ";
-		return answer.substring(0,10);
+
+		public String cellContents(){
+			return "ValueCell";
+		}
 	}
-	public String fullTextCell(){
-		return this.answer;
-	}
-}

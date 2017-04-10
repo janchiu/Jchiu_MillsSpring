@@ -1,19 +1,17 @@
 package textExcel;
 
-public class FormulaCell extends RealCell {
-	@Override
-	public String abbreviatedCellText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String fullCellText() {
-		return super.fullCellText();
-	}
+public class FormulaCell extends RealCell{
+	Spreadsheet original;
 	
-	public FormulaCell (String enteredForm){
-		super(enteredForm);
+	public FormulaCell(String value, Spreadsheet sheet){
+		super(value);
+		original = sheet;
 	}
 
+
+	
+	public String cellContents(){
+		return "FormulaCell";
+	}
 }
+

@@ -1,0 +1,101 @@
+package textExcel;
+
+public class PercentCell extends RealCell {
+/*	
+	public String abbreviatedCellText() {
+		String output = super.getDoubleValue() + "%";
+		if(output.indexOf(".") < 0){
+			output = output.substring(0,output.indexOf(".")) +"%          ";
+			
+		}
+		return output.substring(0,10);
+	}
+	@Override
+	public String fullCellText() {
+		
+		return getDoubleValue()+"";
+	}
+	
+	public PercentCell(String originalValue){
+		super(originalValue);
+	}
+	
+	public double getDoubleValue(){
+		
+		return (Double.parseDouble(fullCellText().substring(0, number.length()-1)))/100;
+	}
+
+}
+*/
+	/*
+private String input;
+public PercentCell (String input){
+	super (input);
+	this.input = input;
+}
+
+public String abbreviatedCellText() {
+	String abrv;
+	if(input.indexOf(".") == -1){
+		abrv = input;
+	}else{
+		abrv = input.substring(0, input.indexOf("."));
+	}
+	abrv += "%          ";
+	
+	return abrv.substring(0,10);
+}
+
+public String fullCellText() {
+
+	return GetDoubleValue()+"";
+}
+
+public double GetDoubleValue (){
+	return Double.parseDouble(input.substring(0, input.length()-1))/100;
+	
+}
+
+}
+	*/
+	/*
+		private double percent;
+		public PercentCell(String value){
+			//stores both original string and double value of the string
+			super(value);
+			percent=Double.parseDouble(value);
+		}
+		public String fullCellText(){
+			//returns percentage as a string in decimal form
+			return ""+getDoubleValue();
+		}
+		public String abbreviatedCellText(){
+			//truncates the percentage
+			return String.format("%-10s", getCellContents().substring(0, getCellContents().indexOf("."))+"%");
+		
+		}
+		
+		public double getDoubleValue(){
+			//returns percentage in decimal form
+			return percent/100;
+		}
+		
+	}
+	*/
+	
+	public PercentCell(String value){
+		super(value);
+	}
+	
+	public String abbreviatedCellText(){
+		return truncate(((int) getDouble() + "%        "));
+	}
+	
+	public String fullCellText(){
+		return (getDouble()/100 + "");
+	}
+	
+	public String cellContents(){
+		return "PercentCell";
+	}
+}

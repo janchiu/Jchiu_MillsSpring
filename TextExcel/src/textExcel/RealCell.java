@@ -1,27 +1,28 @@
 package textExcel;
 
+
 public class RealCell implements Cell {
-	private String answer;
+	private String value;
 	
-	public RealCell(String enteredValue) {
-		answer = enteredValue;
+	public RealCell(String input){
+		value = input;
 	}
-	@Override
-	public String abbreviatedCellText() {
-		String stuff =answer+"          ";
-		return stuff.substring(0,10);
+	
+	public String truncate(String input){
+		input = input.substring(0, 10);
+		return input;
 	}
-	@Override
-	public String fullCellText() {	
-		return answer;
+	
+	public String abbreviatedCellText(){
+		return truncate(getDouble() + "          ");
 	}
-	public double getDoubleValue(){
-		return Double.parseDouble(answer);
+	
+	public String fullCellText(){
+		return value;
 	}
-	public void setCellContents(String content) {
-		answer = content;
-	}
-	public String getCellContents(){
-		return answer;
+	
+	public double getDouble(){
+		return Double.parseDouble(value);
 	}
 }
+

@@ -1,34 +1,30 @@
-package textExcel;
+ package textExcel;
 
 public class PercentCell extends RealCell {
 	
-	public String abbreviatedCellText() {
-		String output = super.getDoubleValue() + "%";
-		if(output.indexOf(".") < 0){
-			if (output.length() < 10){
-				while (output.length() < 10){
-					output += " ";
-				} 
-			return output;
-		} else 
-			output = output.substring(0,output.indexOf("."))+ "%";
-		return (output + "          ").substring(0, 10);
-		}
-		return "";
-	}
-
-	@Override
-	public String fullCellText() {
-		
-		return getDoubleValue()+"";
+private String input;
+	public PercentCell(String input){
+		super(input);
+		this.input = input;
 	}
 	
-	public PercentCell(String originalValue){
-		super(originalValue);
-	}
-	
-	public double getDoubleValue(){
-		return Double.parseDouble(fullCellText().substring(0, fullCellText().length()-1));
+	public String abbreviatedCellText(){
+		return truncate(((int) getDouble() + "%        ")); // edit 	
 	}
 
+	public String fullCellText(){
+		return (getDouble()/100 + "");
+	}
+	
+	public String cellContents(){
+		return "PercentCell";
+	}
+	
+	public double getDoubleValue(String words){
+		return Double.parseDouble(input.substring(0, input.length()-1))/100;
+	}
 }
+	
+	
+
+	

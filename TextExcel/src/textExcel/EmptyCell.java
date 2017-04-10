@@ -13,6 +13,8 @@ public class EmptyCell implements Cell {
 		// TODO Auto-generated method stub
 		return "";
 	}
+	public EmptyCell(){
 		
+	}
 	}
 

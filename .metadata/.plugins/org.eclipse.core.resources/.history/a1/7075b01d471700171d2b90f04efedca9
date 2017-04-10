@@ -1,0 +1,107 @@
+package textExcel;
+
+public class ValueCell extends RealCell 
+	{
+	/*
+	private String answer;
+	
+	public ValueCell(String enteredValue){
+		super(enteredValue);	
+	}
+	public double getDoubleValue(){
+		answer = getCellContents();
+		double doubleValue=Double.parseDouble(answer);
+		return doubleValue;
+	}
+	public String abbreviatedCellText(){
+		String answer=getCellContents();
+		if( answer.length()< 10) {
+			answer = getDoubleValue()+ "";
+		} else {
+			answer = this.answer;
+			return answer;
+		}
+		answer+="          ";
+		return answer.substring(0,10);
+	}
+	public String fullTextCell(){
+		return this.answer;
+	}
+}
+	*/
+	/*
+private String input;
+	
+	public ValueCell (String input){
+		super (input);
+		
+	}
+
+	public String abbreviatedCellText() {
+		String abrv;
+		if(input.length()>10){
+			abrv = input.substring(0,10);
+		}else{
+			abrv = GetDoubleValue () + "";
+			abrv += "          ";
+		}
+		return abrv.substring(0,10);
+	}
+
+	public String fullCellText() {
+		
+		return input;
+		
+	}
+	public double GetDoubleValue (){
+		return Double.parseDouble(input);
+	}
+
+}
+	*/
+	
+	private double decimal;
+	public ValueCell(String value) {
+		//stores both original string and double value of the string
+		super(value);
+		decimal=Double.parseDouble(value);
+	}
+	public String fullCellText(){
+		//returns the full double
+		return getCellContents();
+	}
+	public String abbreviatedCellText(){
+		String num = getCellContents();
+		int dot=periodLoc();
+		if (dot==-1)//if there is no decimal, add one
+			num= num+".0";
+		int i=getCellContents().length()-1;
+		if(decimal!=0){//shorten the number of zeros to the next non zero character
+			while(num.substring(i, i+1).equals("0")&&dot>=0){
+				num=num.substring(0, i);
+				i--;
+			}
+			if(num.substring(num.length()-1).equals("."))
+				num=num+"0";
+		}
+		if(num.length()>10){
+			//cutting the string down to 10 characters
+			return num.substring(0, 10);
+		}	
+		else//formatted version if less than 10 characters long
+			return String.format("%-10s", num.substring(0));
+	}
+	public double getDoubleValue(){
+		//returns double value of the cell
+		return decimal;
+	}
+	public int periodLoc(){
+		//determines location of the period
+		for(int i=0;i<getCellContents().length();i++){
+			if(getCellContents().substring(i, i+1).equals("."))
+				return i;
+		}
+		return -1;
+	}
+}
+	

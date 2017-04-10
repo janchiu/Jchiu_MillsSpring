@@ -1,0 +1,116 @@
+package textExcel;
+
+public class PercentCell extends RealCell {
+/*	
+	public String abbreviatedCellText() {
+		String output = super.getDoubleValue() + "%";
+		if(output.indexOf(".") < 0){
+			output = output.substring(0,output.indexOf(".")) +"%          ";
+			
+		}
+		return output.substring(0,10);
+	}
+	@Override
+	public String fullCellText() {
+		
+		return getDoubleValue()+"";
+	}
+	
+	public PercentCell(String originalValue){
+		super(originalValue);
+	}
+	
+	public double getDoubleValue(){
+		
+		return (Double.parseDouble(fullCellText().substring(0, number.length()-1)))/100;
+	}
+
+}
+*/
+	/*
+private String input;
+public PercentCell (String input){
+	super (input);
+	this.input = input;
+}
+
+
+public String fullCellText() {
+
+	return GetDoubleValue()+"";
+}
+
+public double GetDoubleValue (){
+	return Double.parseDouble(input.substring(0, input.length()-1))/100;
+	
+}
+
+}
+	*/
+	/*
+private String input;
+	public PercentCell(String input){
+		super(input);
+		this.input = input;
+	}
+	
+	
+	public String abbreviatedCellText(){
+		//return truncate(((int) getDouble() + "%        "));
+		String abrv = "";
+		if (input.indexOf(".")>0){
+			abrv = input.substring(0, input.indexOf("."));
+		}
+		abrv += "%         ";
+		return abrv.substring(0,10);
+	}
+	
+	
+	
+	public String fullCellText(){
+		//return (getDouble()/100 + "");
+		return getDoubleValue(input)+"";
+	}
+	
+	public String cellContents(){
+		return "PercentCell";
+	}
+	public double getDoubleValue(String words){
+		return Double.parseDouble(input.substring(0, input.length()-1))/100;
+	}
+}
+	*/
+	
+
+		private String percent;
+		
+		public PercentCell(String percent) { //inherited constructor from realcell
+			super(percent);
+		}
+		
+		@Override
+		public String abbreviatedCellText() {
+			String revisedStr = ((int)(getDoubleValue())) + "%"; //revised string is double value of percent with % attached
+			int spaceNum = 10 - revisedStr.length(); //number of spaces left
+			if (revisedStr.length() < 10) { //populates spaces based on spaceNum, returns revisedStr
+				for (int i = spaceNum; i > 0; i--) {
+					revisedStr += " ";
+				}
+				return revisedStr;
+			} else if (revisedStr.length() == 10){
+				return revisedStr;
+			} else {
+				return revisedStr;
+			}
+		}
+		
+		public String fullCellText() {
+			return (getDoubleValue()/100.0) + ""; //converts number to decimal for display as a string through concatenation of double value and ""
+		}
+		
+		public double getDoubleValue() {
+			String modifiedStr = super.fullCellText().substring(0, super.fullCellText().length() - 1); //gets double value by substringing number portion (not %) of percentcell
+			double num = Double.parseDouble(modifiedStr); //parses into double
+			return num;
+		}
+	}
