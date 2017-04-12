@@ -8,9 +8,9 @@ public class RealCell implements Cell {
 		value = input;
 	}
 	
-	public String truncate(String enteredValue){ // truncates the value into 10 spaces
-		enteredValue = enteredValue.substring(0, 10);
-		return enteredValue;
+	public String truncate(String input){
+		input = input.substring(0, 10);
+		return input;
 	}
 	
 	public String abbreviatedCellText(){
@@ -21,7 +21,7 @@ public class RealCell implements Cell {
 		return value;
 	}
 	
-	public double getDouble(){ // finds the double value of a RealCell
+	public double getDouble(){
 		return Double.parseDouble(value);
 	}
 }

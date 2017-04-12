@@ -16,7 +16,7 @@ private String input;
 		return (getDouble()/100 + "");
 	}
 	
-	public String cellContents(){ // returns the type of cell 
+	public String cellContents(){
 		return "PercentCell";
 	}
 	

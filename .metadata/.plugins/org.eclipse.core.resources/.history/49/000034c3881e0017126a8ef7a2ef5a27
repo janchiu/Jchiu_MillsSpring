@@ -16,11 +16,11 @@ private String input;
 		return (getDouble()/100 + "");
 	}
 	
-	public String cellContents(){ // returns the type of cell 
+	public String cellContents(){
 		return "PercentCell";
 	}
 	
-	public double getDoubleValue(String text){
+	public double getDoubleValue(String words){
 		return Double.parseDouble(input.substring(0, input.length()-1))/100;
 	}
 }

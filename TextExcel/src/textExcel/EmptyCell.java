@@ -16,5 +16,5 @@ public class EmptyCell implements Cell {
 	public EmptyCell(){
 		
 	}
-	}
+}
 
