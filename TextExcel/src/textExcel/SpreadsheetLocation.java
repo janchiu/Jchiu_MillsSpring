@@ -28,4 +28,3 @@ public class SpreadsheetLocation implements Location
 	    }
 
 	}
-
