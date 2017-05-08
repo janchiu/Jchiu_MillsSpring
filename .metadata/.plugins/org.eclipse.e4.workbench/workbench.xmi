@@ -11,6 +11,7 @@
     <persistedState key="workingSets" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workingSets/>"/>
     <persistedState key="aggregateWorkingSetId" value="Aggregate for window 1486488374029"/>
     <tags>topLevel</tags>
+    <tags>shellMaximized</tags>
     <children xsi:type="basic:PartSashContainer" xmi:id="_9v3UYhjKEeeefOt0Go1D4w" selectedElement="_9v3UYxjKEeeefOt0Go1D4w" horizontal="true">
       <children xsi:type="advanced:PerspectiveStack" xmi:id="_9v3UYxjKEeeefOt0Go1D4w" elementId="org.eclipse.ui.ide.perspectivestack" containerData="7500" selectedElement="_9v3UgRjKEeeefOt0Go1D4w">
         <children xsi:type="advanced:Perspective" xmi:id="_9v3UZBjKEeeefOt0Go1D4w" elementId="org.eclipse.jdt.ui.JavaPerspective" selectedElement="_9v3UZRjKEeeefOt0Go1D4w" label="Java" iconURI="platform:/plugin/org.eclipse.jdt.ui/$nl$/icons/full/eview16/jperspective.png">
@@ -458,7 +459,7 @@
           </menus>
         </children>
         <children xsi:type="basic:Part" xmi:id="_9v3WQRjKEeeefOt0Go1D4w" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="FormulaCell.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;FormulaCell.java&quot; partName=&quot;FormulaCell.java&quot; title=&quot;FormulaCell.java&quot; tooltip=&quot;TextExcel/src/textExcel/FormulaCell.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/TextExcel/src/textExcel/FormulaCell.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;316&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;FormulaCell.java&quot; partName=&quot;FormulaCell.java&quot; title=&quot;FormulaCell.java&quot; tooltip=&quot;TextExcel/src/textExcel/FormulaCell.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/TextExcel/src/textExcel/FormulaCell.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;694&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
@@ -815,7 +816,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_9v38JhjKEeeefOt0Go1D4w" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_3KB3IDGoEeem79K4GMLcHQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_9v6YqxjKEeeefOt0Go1D4w"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_3TozADQBEeemM8Mm-l2Hpg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_9v6YqxjKEeeefOt0Go1D4w"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_9v38MxjKEeeefOt0Go1D4w" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -839,7 +840,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_9v38fRjKEeeefOt0Go1D4w" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_3KB3KjGoEeem79K4GMLcHQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_9v6YIhjKEeeefOt0Go1D4w"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_3Tx88DQBEeemM8Mm-l2Hpg" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_9v6YIhjKEeeefOt0Go1D4w"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_9v38iBjKEeeefOt0Go1D4w" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>

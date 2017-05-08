@@ -14,19 +14,7 @@ public class FormulaCell extends RealCell{
 		//sheet = // idk 
 		String formula = value.substring(value.indexOf("(") +1, value.indexOf(")"));
 		if ( formula.contains("*")){
-			formula.split("*");	
-		}
-		else if ( formula.contains( "/")){
-			formula.split("/");
-		}
-		else if ( formula.contains("avg")){		
-		}
-		else if( formula.contains("+")){
-			
-		}
-		else if(formula.contains("-")){
-			
-		}else{ 
+			formula.split("*");
 			
 		}
 		//if (formula.equals(arg0)) {
