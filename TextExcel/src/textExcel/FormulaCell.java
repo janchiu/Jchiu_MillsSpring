@@ -34,7 +34,10 @@ public class FormulaCell extends RealCell{
 		//}
 		// need to be edited  
 	// cellEnter 
-		
+		public double getDoubleValue(){
+			
+			return 
+		}
 	}
 	
 	
